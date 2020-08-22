@@ -94,7 +94,7 @@ def train_12ECG_classifier(input_directory, output_directory):
 
     model.fit(x=batch_generator(batch_size=batchsize, gen_x=generate_X(ecg_filenames), gen_y=generate_y(y),gen_z=generate_z(age,gender), ohe_labels=classes_for_prediction), 
     epochs=15, steps_per_epoch=(len(y)/batchsize), class_weight=class_dict, callbacks=[tf.keras.callbacks.ReduceLROnPlateau(monitor='AUC', factor=0.1, patience=1, verbose=1, mode='max',
-min_delta=0.0001, cooldown=0, min_lr=0))
+min_delta=0.0001, cooldown=0, min_lr=0)])
 
     # Save model.
     print('Saving model...')
