@@ -4,23 +4,11 @@ import joblib
 import tensorflow as tf
 from tensorflow import keras
 from scipy.io import loadmat
+import tensorflow_addons as tfa
 
 
 
-def res_block(X):
-  X_shortcut = X
-  X_shortcut = keras.layers.MaxPool1D(pool_size=1)(X_shortcut)
 
-  X = keras.layers.BatchNormalization()(X)
-  X = keras.layers.Activation("relu")(X)
-  X = keras.layers.Dropout(0.2)(X)
-  X = keras.layers.Conv1D(filters=12, kernel_size=5, activation="relu", padding="same")(X)
-  X = keras.layers.BatchNormalization()(X)
-  X = keras.layers.Activation("relu")(X)
-  X = keras.layers.Dropout(0.2)(X)
-  X = keras.layers.Conv1D(filters=12, kernel_size=5, activation="relu", padding="same")(X)
-  X = keras.layers.add([X,X_shortcut])
-  return X
 
 
 def create_model():
